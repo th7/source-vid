@@ -1,1 +1,7 @@
-= render @repository
+%h4= link_to(@repository.url, repository_path(@repository.id))
+- if @repository.complete?
+  %h4= link_to('Download Video', repository_download_path(@repository.id))
+- elsif @repository.inactive?
+  %h4= link_to('Start Processing', repository_start_path(@repository.id), method: :post)
+- else
+  %h4= @repository.status

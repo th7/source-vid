@@ -1,11 +1,12 @@
 class GitAdapter
   class << self
     def working_directory
-      Rails.root.join('repositories')
+      '/tmp/repositories'
     end
 
     def download(url)
       create_working_dir
+      raise 'cloning failed' unless system("cd #{working_directory} && git clone #{url}")
     end
 
     private

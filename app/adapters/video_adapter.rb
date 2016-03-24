@@ -1,6 +1,8 @@
 require 'open3'
 
 class VideoAdapter
+  OUTPUT_DIR = Rails.root.join('videos')
+
   def initialize(path_to_repo)
     @path_to_repo = path_to_repo
   end
@@ -8,8 +10,12 @@ class VideoAdapter
   # mocked for now
   # the command below doesn't seem to terminate
   # and stopping it programmatically doesn't seem to work
-  def write_to(output_path)
-    FileUtils.cp('/tmp/gource-mocked.mp4', output_path)
+  def write_to(repository_id, base_filename)
+    intended_filepath = File.join(OUTPUT_DIR, repository_id.to_s)
+    FileUtils.mkdir_p(intended_filepath)
+    final_filepath = File.join(intended_filepath, "#{base_filename}.mp4")
+    FileUtils.cp('/tmp/gource-mocked.mp4', final_filepath)
+    final_filepath
   end
 
   private

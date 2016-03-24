@@ -1,2 +1,2 @@
 %h4= link_to(repository.url, repository_path(repository.id))
-%h4= repository.video_filepath
+%h4= link_to('Download Video', repository_download_path(repository.id))

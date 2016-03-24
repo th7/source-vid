@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get '/', to: redirect('/repositories')
-  resources :repositories, only: [:index, :show]
+  resources :repositories, only: [:index, :show] do
+    get '/download' => 'repositories#download'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,5 +1,5 @@
 class RepositoriesController < ApplicationController
   def index
-    @repositories = ['stubbed']
+    @repositories = Repository.all
   end
 end

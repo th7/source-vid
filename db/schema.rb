@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324001234) do
+ActiveRecord::Schema.define(version: 20160324134808) do
 
   create_table "repositories", force: :cascade do |t|
     t.string "url"
+    t.string "video_filepath"
   end
 
 end

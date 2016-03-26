@@ -28,6 +28,7 @@ class VideoAdapter
       wait_thread.join
     end
   end
+
   # it seems possible to interrupt gource / ffmpeg gracefully using ctrl+c on a foreground process
   # this creates a working if shorter video
   # this method was intended to programmatically do the same thing

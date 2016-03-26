@@ -17,15 +17,18 @@ class RepositoriesController < ApplicationController
   end
 
   def start
+    repo_id = nil
     Repository.transaction do
       repo = Repository.lock.find(params[:repository_id])
+      repo_id = repo.id
       if repo.inactive?
         VideoWorker.perform_async(repo.id)
         repo.queued!
       else
         raise 'make me a friendlier error noob!'
       end
+
     end
-    redirect_to repository_path(repo.id)
+    redirect_to repository_path(repo_id)
   end
 end
